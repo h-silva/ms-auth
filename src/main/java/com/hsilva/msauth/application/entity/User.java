@@ -51,8 +51,12 @@ public class User  implements UserDetails {
     private LocalDateTime updatedAt;
 
     public User(UserDTO userDTO){
-        this.username = userDTO.getUsername().trim().toLowerCase();
-        this.password = userDTO.getPassword();
+
+    }
+
+    public User(String username, String password) {
+        this.username = username.trim().toLowerCase();
+        this.password = password;
     }
 
     @Override

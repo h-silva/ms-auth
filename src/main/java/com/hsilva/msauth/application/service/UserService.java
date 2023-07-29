@@ -4,6 +4,8 @@ import com.hsilva.msauth.application.entity.User;
 import com.hsilva.msauth.application.repository.UserRepository;
 import com.hsilva.msauth.application.web.UserDTO;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,11 +13,13 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder bCryptEncoder;
 
 
     public void createUser(UserDTO userDTO){
 
-        User user = new User(userDTO);
+        User user = new User(userDTO.getUsername(), bCryptEncoder.encode(userDTO.getPassword()));
+        user.setActive(true);
 
         this.userRepository.save(user);
     }
