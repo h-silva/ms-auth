@@ -12,14 +12,22 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.UuidGenerator;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
 
 @Table(name = "cdt_user")
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class User {
+public class User  implements UserDetails {
 
     @Id
     @UuidGenerator
@@ -43,7 +51,42 @@ public class User {
     private LocalDateTime updatedAt;
 
     public User(UserDTO userDTO){
-        this.username = userDTO.getUsername();
+        this.username = userDTO.getUsername().trim().toLowerCase();
         this.password = userDTO.getPassword();
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public String getUsername(){
+        return username;
+    }
+
+    @Override
+    public String getPassword(){
+        return password;
     }
 }

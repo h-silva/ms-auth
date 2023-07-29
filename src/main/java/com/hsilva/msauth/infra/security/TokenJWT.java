@@ -1,4 +1,4 @@
-package com.hsilva.msauth.infra;
+package com.hsilva.msauth.infra.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

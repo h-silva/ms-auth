@@ -1,8 +1,9 @@
-package com.hsilva.msauth.infra;
+package com.hsilva.msauth.infra.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.hsilva.msauth.application.entity.User;
 import com.hsilva.msauth.application.web.AuthDTO;
 import com.hsilva.msauth.application.web.AuthRequestDTO;
 import lombok.AllArgsConstructor;
@@ -20,14 +21,14 @@ public class TokenService {
     private String secretKey;
 
 
-    public String createToken(AuthRequestDTO authDTO){
+    public String createToken(User user){
         try {
             Algorithm algorithm = Algorithm.HMAC256(secretKey);
             String token = JWT.create()
                     .withIssuer("MS-AUTH")
-                    .withSubject(authDTO.getUsername())
+                    .withSubject(user.getUsername())
                     .withClaim("foobar", "foobar")
-                    .withExpiresAt(expireDateBySeconds(authDTO.getTime()))
+                    .withExpiresAt(expireDateBySeconds(5000l))
                     .sign(algorithm);
             return token;
         } catch (JWTCreationException exception){
