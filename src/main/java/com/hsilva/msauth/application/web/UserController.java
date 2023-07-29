@@ -1,6 +1,5 @@
 package com.hsilva.msauth.application.web;
 
-import com.hsilva.msauth.application.entity.User;
 import com.hsilva.msauth.application.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -22,7 +21,7 @@ public class UserController {
     }
 
     @GetMapping("/{uuid}")
-    public ResponseEntity<User> findById(@PathVariable String uuid){
+    public ResponseEntity<UserDetailDTO> findById(@PathVariable String uuid){
         return ResponseEntity.ok(this.userService.findById(uuid));
     }
 

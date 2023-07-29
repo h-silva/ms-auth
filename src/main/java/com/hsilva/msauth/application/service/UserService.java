@@ -3,8 +3,8 @@ package com.hsilva.msauth.application.service;
 import com.hsilva.msauth.application.entity.User;
 import com.hsilva.msauth.application.repository.UserRepository;
 import com.hsilva.msauth.application.web.UserDTO;
+import com.hsilva.msauth.application.web.UserDetailDTO;
 import lombok.AllArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +24,9 @@ public class UserService {
         this.userRepository.save(user);
     }
 
-    public User findById(String uuid){
-        return this.userRepository.findById(uuid).orElseThrow();
+    public UserDetailDTO findById(String uuid){
+        User user = this.userRepository.findById(uuid).orElseThrow();
+        return new UserDetailDTO(user);
     }
 
     public void inactivate(String uuid){

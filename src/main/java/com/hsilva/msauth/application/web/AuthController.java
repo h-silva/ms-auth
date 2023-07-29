@@ -1,10 +1,11 @@
 package com.hsilva.msauth.application.web;
 
 import com.hsilva.msauth.application.entity.User;
-import com.hsilva.msauth.application.service.AuthenticationService;
 import com.hsilva.msauth.infra.security.TokenJWT;
 import com.hsilva.msauth.infra.security.TokenService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +29,11 @@ public class AuthController {
     }
 
     @GetMapping("/{token}")
-    public AuthDTO clarify(@PathVariable String token){
-        return new AuthDTO();
+    public ResponseEntity clarify(@PathVariable String token){
+        try {
+            return ResponseEntity.ok( this.tokenService.clarify(token));
+        }catch (Exception exception){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(exception.getMessage());
+        }
     }
-
 }
