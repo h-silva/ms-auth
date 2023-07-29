@@ -1,5 +1,6 @@
 package com.hsilva.msauth.application.web;
 
+import com.hsilva.msauth.infra.TokenJWT;
 import com.hsilva.msauth.infra.TokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class AuthController {
     }
 
     @PostMapping
-    public String authenticate(@RequestBody AuthRequestDTO authRequestDTO){
-        return new String(UUID.randomUUID().toString());
+    public TokenJWT authenticate(@RequestBody AuthRequestDTO authRequestDTO){
+        return new TokenJWT(UUID.randomUUID().toString());
     }
 }
