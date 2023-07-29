@@ -1,6 +1,8 @@
-package com.hsilva.msauth.application.web;
+package com.hsilva.msauth.controller;
 
-import com.hsilva.msauth.application.service.UserService;
+import com.hsilva.msauth.controller.dto.UserDTO;
+import com.hsilva.msauth.controller.dto.UserDetailDTO;
+import com.hsilva.msauth.controller.domain.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

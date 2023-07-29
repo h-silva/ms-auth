@@ -1,4 +1,4 @@
-package com.hsilva.msauth.application.web;
+package com.hsilva.msauth.controller.dto;
 
 import lombok.Data;
 

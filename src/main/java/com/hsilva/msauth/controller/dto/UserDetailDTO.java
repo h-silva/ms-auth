@@ -1,6 +1,6 @@
-package com.hsilva.msauth.application.web;
+package com.hsilva.msauth.controller.dto;
 
-import com.hsilva.msauth.application.entity.User;
+import com.hsilva.msauth.controller.domain.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

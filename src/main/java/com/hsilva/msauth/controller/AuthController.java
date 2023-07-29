@@ -1,6 +1,7 @@
-package com.hsilva.msauth.application.web;
+package com.hsilva.msauth.controller;
 
-import com.hsilva.msauth.application.entity.User;
+import com.hsilva.msauth.controller.dto.AuthRequestDTO;
+import com.hsilva.msauth.controller.domain.entity.User;
 import com.hsilva.msauth.infra.security.TokenJWT;
 import com.hsilva.msauth.infra.security.TokenService;
 import lombok.AllArgsConstructor;

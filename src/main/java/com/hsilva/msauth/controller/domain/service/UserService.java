@@ -1,9 +1,9 @@
-package com.hsilva.msauth.application.service;
+package com.hsilva.msauth.controller.domain.service;
 
-import com.hsilva.msauth.application.entity.User;
-import com.hsilva.msauth.application.repository.UserRepository;
-import com.hsilva.msauth.application.web.UserDTO;
-import com.hsilva.msauth.application.web.UserDetailDTO;
+import com.hsilva.msauth.controller.domain.entity.User;
+import com.hsilva.msauth.controller.domain.repository.UserRepository;
+import com.hsilva.msauth.controller.dto.UserDTO;
+import com.hsilva.msauth.controller.dto.UserDetailDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
